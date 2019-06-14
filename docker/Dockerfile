@@ -18,7 +18,8 @@ RUN pacman -Sy
 # option: opencl for nVidia cards
 # RUN pacman -S ocl-icd opencl-nvidia
 
-RUN pacman -S --noconfirm python git nano youtube-dl wget &&\
+#TODO enable multilib
+RUN pacman -S --noconfirm lib32-libxtst libsm libxrender python git nano youtube-dl wget &&\
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
     rm get-pip.py
