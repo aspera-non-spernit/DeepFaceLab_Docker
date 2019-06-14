@@ -71,3 +71,26 @@ $ docker run -ti -v /home/{USER}/workspace:/app/DeepFaceLab_Linux/workspace aspe
 
 **Note:** The idea is that you execute the docker container with appropriate arguments to run a specific task of
 DeepFaceLab_Linux without logging into the container.
+
+# Documentation
+
+- English language (Google Translate)[PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.docx)
+- Russian language [PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru_source.docx)
+
+# Changes made in this fork
+
+- There have been no changes made to the code base. 
+- The Russian and Chinese language documentation in docx and pdf format have been removed. Links to the orihinal
+source are included in this README.md
+- Several files in ```doc/*.md``` have been condensed into one file ```documentation.md```
+
+# Examples
+
+![Example DeepFace][example_1]
+![Example DeepFace][example_1]
+
+[example_1]: https://github.com/aspera-non-spernit/DeepFaceLab_Linux/doc/gallery/example_1.jpg "Example DeepFace"
+[example_2]: https://github.com/aspera-non-spernit/DeepFaceLab_Linux/doc/gallery/example_2.jpg "Example DeepFace"
+
+
+
