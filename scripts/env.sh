@@ -1,7 +1,3 @@
-source ~/anaconda3/etc/profile.d/conda.sh 2> /dev/null
-conda activate deepfacelab 2> /dev/null
-cd ..
-
 export DFL_PYTHON="python3.7"
 export DFL_WORKSPACE="workspace/"
 
