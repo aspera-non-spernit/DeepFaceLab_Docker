@@ -18,7 +18,7 @@ RUN pacman -Sy
 # option: opencl for nVidia cards
 # RUN pacman -S ocl-icd opencl-nvidia
 
-RUN pacman -S --noconfirm python git  &&\
+RUN pacman -S --noconfirm python git nano youtube-dl wget &&\
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
     rm get-pip.py
@@ -29,4 +29,5 @@ WORKDIR /app/DeepFaceLab_Linux
 
 COPY . /app/DeepFaceLab_Linux
 RUN python -m pip install -r requirements-$requirements.txt &&\
-    rm docker_from_cloned_repository.sh &&\
+    rm docker_from_cloned_repository.sh
+
