@@ -86,11 +86,11 @@ source are included in this README.md
 
 # Examples
 
-![Example DeepFace][example_1]
-![Example DeepFace][example_1]
+![Example DeepFace](example_1)
+![Example DeepFace](example_2)
 
-[example_1]: https://github.com/aspera-non-spernit/DeepFaceLab_Linux/doc/gallery/example_1.jpg "Example DeepFace"
-[example_2]: https://github.com/aspera-non-spernit/DeepFaceLab_Linux/doc/gallery/example_2.jpg "Example DeepFace"
+[example_1]: https://www.github.com/aspera-non-spernit/DeepFaceLab_Linux/doc/gallery/example_1.jpg "Example DeepFace"
+[example_2]: https://www.github.com/aspera-non-spernit/DeepFaceLab_Linux/doc/gallery/example_2.jpg "Example DeepFace"
 
 
 
