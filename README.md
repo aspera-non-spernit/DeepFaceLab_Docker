@@ -1,74 +1,64 @@
-# Universal Installation Method
+This is a fork of [https://github.com/lbfs/DeepFaceLab_Linux](bfs/DeepFaceLab_Linux).
 
-### Install Anaconda3
-Download the installer [https://www.anaconda.com/distribution/#linux](https://www.anaconda.com/distribution/#linux). 
+The changes made regard the installation process. This fork uses a docker container to install
+DeeFaceLab_Linux.
 
-Initialize conda for your shell.
-```bash
-export PATH=~/anaconda3/bin:$PATH
-conda init bash
-# Restart your shell
-```
+# Installation
 
-### Install DeepFaceLab
+**Note**: Currently, there's only one option available to install DeepFaceLab Linux.
+That is, you have cloned this repository before you start the installation. The provided ```Dockerfile``` does not download this repository at the moment.
 
-```bash
-conda create -y -n deepfacelab python=3.6.6 cudatoolkit=9.0 cudnn=7.3.1
-conda activate deepfacelab
-git clone https://github.com/lbfs/DeepFaceLab_Linux.git
-cd DeepFaceLab_Linux
-python -m pip install -r requirements-cuda.txt
-```
 
-# Native Installation Instructions
+1. Install and run Docker
 
-## Installation for Ubuntu 16.04
-
-An installation script has been created to automatically install all of the required dependencies for Ubuntu 16.04. Clone the repository and run ``ubuntu16.04-cuda9-installer.sh`` from the root directory of DeepFaceLab_Linux. 
-
-## Installation for Ubuntu 18.04
-
-#### Add NVIDIA package repositories
-```bash
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
-sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-sudo apt-get update
-```
-
-#### Install NVIDIA Video Driver
-```bash
-sudo apt-get install --no-install-recommends nvidia-driver-418
-```
-**Reboot your system.**
-
-For this method, we will create an Ubuntu 16.04 container on your system. In order to do this, we will need to install and configure LXD. 
-```bash
-sudo snap install lxd
-sudo lxd init
-sudo adduser "$USER" lxd
-```
-**Reboot or logout so the new group membership can take effect**
-
-After you have finished installing and configuring lxd to your needs. We will now need to create the container. 
 
 ```bash
-echo "root:$UID:1" | sudo tee -a /etc/subuid /etc/subgid #Only run once and never again!
-wget https://blog.simos.info/wp-content/uploads/2018/06/lxdguiprofile.txt #Thanks to Simos Xenitellis for his GUI LXC profile!
-lxc profile create gui
-cat lxdguiprofile.txt | lxc profile edit gui
-lxc launch --profile default --profile gui ubuntu:16.04 deepfacelab
-# Wait 30s so the environment can fully setup without issue.
-# Logging in before the inital setup is done can cause problems.
-# The next command will fix the DeepFaceLab GUI to allow it to show up correctly.
-lxc exec deepfacelab -- sh -c "echo 'export QT_X11_NO_MITSHM=1' >> /home/ubuntu/.bashrc"
+// archlinux
+# pacman -S docker 
+# systemctl start docker
+// ubuntu
+...
 ```
 
-You can now access your container at any time with the following command
+1. Clone the repository
+
 ```bash
-lxc exec deepfacelab -- su ubuntu
+$ git clone https://github.com/lbfs/DeepFaceLab_Linux
 ```
 
-While in the container, change to your home directory with ``cd ~\`` and then run the installation instructions for Ubuntu 16.04 and you will have created an identical environment.
+2. Change directory and make the build script executable
 
-**WARNING: Make sure you install the same video driver in the container as installed in the host!**
+```bash
+$ cd DeepFaceLab
+$ chmod 700 docker_from_cloned_repository.sh
+```
+
+**Note**: If you experience network issues during the installation do the following:
+```bash
+# cp docker/daemon.json /etc/docker
+```
+
+3. Run the build script
+
+**Note**: The build script will ask you for the environment you are using.
+Correct answers are: cuda, cpu or opencl
+
+```bash
+$ ./docker_from_cloned_repository.sh
+```
+-v myvol2:/app \
+4. Run the docker container
+
+**Note:** I recommend to 'mount' the workspace of DeepFaceLinux to a directory outside the docker container.
+If you do not want that remove the -v option. If you choose to do so you can read and write media files to the directoy of the host system.
+
+```bash
+// create workspace
+$ mkdir /home/{USER}/workspace
+$ docker run -ti -v /home/{USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
+´´´
+
+5. Execute Docker Container as executable comman
+
+**Note:** The idea is that you execute the docker container with appropriate arguments to run a specific task of
+DeepFaceLab_Linux without logging into the container.
