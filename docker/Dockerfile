@@ -28,4 +28,5 @@ WORKDIR /app/DeepFaceLab_Linux
 # git clone https://www.github.com/aspera-non-spernit/DeepFaceLab_Linux.git
 
 COPY . /app/DeepFaceLab_Linux
-RUN python -m pip install -r requirements-$requirements.txt && rm docker_from_cloned_repository.sh
+RUN python -m pip install -r requirements-$requirements.txt &&\
+    rm docker_from_cloned_repository.sh &&\
