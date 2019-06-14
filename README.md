@@ -8,9 +8,11 @@ DeeFaceLab_Linux.
 **Notes**: 
 
 Currently, there's only one option available to install DeepFaceLab Linux.
-That is, you have cloned this repository before you start the installation. The provided ```Dockerfile``` does not download this repository at the moment.
+That is, you have cloned this repository before you start the installation. The provided ```docker/Dockerfile``` does not download this repository at the moment.
 
-The installation routine assumes, if you have a CUDA graphics card installed in your machine, that you have already installed the correct drivers. The routine does not install cuda or opencl drivers.
+The routine does not install cuda or opencl drivers at the moment. You can uncommebt the parts required in the
+```docker/Dockerfile```
+
 
 ## 1) Install and run Docker
 
