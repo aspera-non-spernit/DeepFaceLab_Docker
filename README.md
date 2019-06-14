@@ -14,7 +14,7 @@ The routine does not install cuda or opencl drivers at the moment. You can uncom
 ```docker/Dockerfile```
 
 
-## 1) Install and run Docker
+## 1) Install and start/enable Docker
 
 **Note:** The user running the docker container must be member of the group "docker". This example is for
 Archlinux. Docker is available in repositories of many other Linux distros.
