@@ -74,8 +74,8 @@ DeepFaceLab_Linux without logging into the container.
 
 # Documentation
 
-- English language (Google Translate)[PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.docx)
-- Russian language [PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru_source.docx)
+- English language (Google Translate): [PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.docx)
+- Russian language: [PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru_source.docx)
 
 # Changes made in this fork
 
@@ -86,11 +86,8 @@ source are included in this README.md
 
 # Examples
 
-![Example DeepFace](example_1)
-![Example DeepFace](example_2)
-
-[example_1]: doc/gallery/example_1.jpg "Example DeepFace"
-[example_2]: doc/gallery/example_2.jpg "Example DeepFace"
+![Example DeepFace 1](doc/gallery/example_1.jpg )
+![Example DeepFace 2](doc/gallery/example_2.jpg)
 
 
 
