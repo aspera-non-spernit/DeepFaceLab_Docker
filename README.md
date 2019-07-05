@@ -21,7 +21,7 @@ Archlinux. Docker is available in repositories of many other Linux distros.
 
 ```bash
 # pacman -S docker
-# usermod -a -G docker {USER}
+# usermod -a -G docker ${USER}
 # systemctl start docker
 ```
 
@@ -34,7 +34,7 @@ $ git clone https://github.com/aspera-non-spernit/DeepFaceLab_Linux
 ## 3) Change directory and make the build script executable
 
 ```bash
-$ cd DeepFaceLab
+$ cd DeepFaceLab_Linux
 $ chmod 700 docker_from_cloned_repository.sh
 ```
 
@@ -42,6 +42,11 @@ $ chmod 700 docker_from_cloned_repository.sh
 System DNS. You can manually edit the file and enter any DNS of your choice:
 
 ```bash
+$ nano docker/daemon.json
+// enter your DNS
+    {
+        "dns": ["10.0.0.2", "8.8.8.8"]
+    }
 # cp docker/daemon.json /etc/docker
 ```
 
@@ -60,11 +65,11 @@ $ ./docker_from_cloned_repository.sh
 If you do not want that remove the -v option. If you choose to do so you can read and write media files to the directoy of the host system.
 
 ```bash
-// create workspace
-$ mkdir /home/{USER}/workspace
+// create workspace in the user home directory
+$ mkdir /home/${USER}/workspace
 
 // run the container
-$ docker run -ti -v /home/{USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
+$ docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
 ```
 
 ## 6) Execute Docker Container as executable command
@@ -77,6 +82,18 @@ DeepFaceLab_Linux without logging into the container.
 - English language (Google Translate): [PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_en_google_translated.docx)
 - Russian language: [PDF](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru.pdf) | [doc](https://github.com/lbfs/DeepFaceLab_Linux/blob/master/doc/manual_ru_source.docx)
 
+# Nice to know
+
+I am mainly using ArchLinux and tested the installation on my local machine and on a remote sanbox cloud machine
+by ovh. Cloud machines be may need an update before you can install required packages. Often the keys are missing
+or outdated.
+
+## Updating Archlinux 
+
+```bash
+# pacman-key --refresh-keys
+# pacman -Syu
+```
 # Changes made in this fork
 
 - There have been no changes made to the code base. 
@@ -86,7 +103,7 @@ source are included in this README.md
 
 # Examples
 
-![Example DeepFace 1](doc/gallery/example_1.jpg )
+![Example DeepFace 1](doc/gallery/example_1.jpg)
 ![Example DeepFace 2](doc/gallery/example_2.jpg)
 
 
