@@ -18,9 +18,9 @@ WORKDIR /DeepFaceLab
 # RUN pacman -S ocl-icd opencl-nvidia
 
 COPY docker/pacman.conf /etc/pacman.conf
-RUN pacman -Sy
+RUN pacman -Sy --noconfirm
 
-RUN pacman -S --noconfirm lib32-libxtst libsm libxrender python git nano youtube-dl wget &&\
+RUN pacman -S --noconfirm lib32-libxtst libsm libxrender python git nano youtube-dl ffmpeg wget &&\
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
     rm get-pip.py
