@@ -43,7 +43,7 @@ System DNS. You can manually edit the file and enter any DNS of your choice:
 
 ```bash
 $ nano docker/daemon.json
-// enter your DNS
+// enter your DNS (example dns)
     {
         "dns": ["10.0.0.2", "8.8.8.8"]
     }
