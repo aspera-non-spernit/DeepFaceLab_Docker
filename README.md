@@ -117,12 +117,16 @@ I am mainly using ArchLinux and tested the installation on my local machine and 
 by ovh. Cloud machines be may need an update before you can install required packages. Often the keys are missing
 or outdated.
 
-## Updating Archlinux 
+## ArchLinux in the Cloud
+
+If you are on ArchLinux host in the cloud, you may have to initialize the keys before the first use of pacman:
 
 ```bash
-# pacman-key --refresh-keys
+# pacman-key --init
+or # pacman-key --refresh-keys
 # pacman -Syu
 ```
+
 # Changes made in this fork
 
 - There have been no changes made to the code base. 
