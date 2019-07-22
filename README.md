@@ -1,7 +1,6 @@
 This is a fork of [https://github.com/lbfs/DeepFaceLab_Linux](bfs/DeepFaceLab_Linux).
 
-The changes made regard the installation process. This fork uses a docker container to install
-DeeFaceLab_Linux.
+This fork uses a docker container to install DeeFaceLab_Linux instead of Anaconda3. The changes made regard the installation process only. No changes have been made to DeepFaceLab itself.
 
 # Installation
 
