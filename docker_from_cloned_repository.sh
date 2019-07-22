@@ -38,12 +38,12 @@ cp ./scripts/run.sh $workspace/..
 
 # Running or quitting installation
 echo -e -n "\nYou can run and enter your Container with the command:\n"
-echo -e -n "docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab\n"
+echo -e -n "docker run -ti -v /home/${USER}/DeepFaceLab/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab\n"
 echo -e -n "\nYou can copy your video material into the workspace folder on the host machine.\n"
 echo -e -n "DeepFaceLab_Docker will pick up changes.\n"
 echo -e -n "\nRun DeepFaceLab_Docker now? [y, n]?"
 read execute
 if [ "$execute" = "y" ]; then
-    docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
+    docker run -ti -v /home/${USER}/DeepFaceLab/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
 fi
 echo -e -n "Installation successful. Have fun.\n"
