@@ -51,22 +51,39 @@ $ nano docker/daemon.json
 
 ## 4) Run the build script
 
-**Note**: The build script will ask you for the environment you are using.
-Correct answers are: cuda, cpu or opencl
+**Note**: The build script will ask you for the environment you are using. And a few other questions.
 
 ```bash
 $ ./docker_from_cloned_repository.sh
+Do you want to run on cuda, cpu or opencl [cuda, cpu, opencl]?:
+_
+// if you answer opencl
+What's your graphics card [mesa, nvidia, nvidia-390xx, ivybridge, haswell]?:
+_
+Where do you want to have the workspace directory [default: /home/${USER}/DeepFaceLab/workspace)]:
+You can run and enter your Container with the command:
+docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
+You can copy your video material into the workspace folder on the host machine.
+DeepFaceLab_Docker will pick up changes.
+Run DeepFaceLab_Docker now? [y, n]? n
+Installation successful. Have fun.
 ```
 
 ## 5) Run the docker container
 
-**Note:** I recommend to 'mount' the workspace of DeepFaceLinux to a directory outside the docker container.
-If you do not want that remove the -v option. If you choose to do so you can read and write media files to the directoy of the host system.
+**Note:** DeepFaceLab suggests to delete untrainable face extractions. Instead this version has, during the installation, created two additional folders in the workspace: 
 
 ```bash
-// create workspace in the user home directory
-$ mkdir /home/${USER}/workspace
+../data_src/aligned_notrain
+../data_dst/aligned_notrain
+```
 
+You can copy aligned png images that you do not want to train, but that may be required after the training
+to render a video sequence without mapped faces. These images can be blurry or otherwise untrainable images.
+You never know if you need them again. If you do you save time for an additional face extract.
+
+### Run
+```bash
 // run the container
 $ docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
 ```

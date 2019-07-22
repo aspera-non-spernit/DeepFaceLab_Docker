@@ -3,33 +3,32 @@
 FROM archlinux/base
 MAINTAINER github.com/aspera-non-spernit
 LABEL description="DeepFaceLab on archlinux/base"
-ARG requirements
-WORKDIR /DeepFaceLab
+ARG env
+ARG graphics
 
-# INSTALLATION OF DRIVERS
-
-# option: nVidia cuda cards
-# RUN pacman -S cuda cudnn
-
-# option: opencl for supported AMD/ATI 
-# RUN pacman -S ocl-icd opencl-mesa
-
-# option: opencl for nVidia cards
-# RUN pacman -S ocl-icd opencl-nvidia
-
+# Updating ArchLinux
 COPY docker/pacman.conf /etc/pacman.conf
 RUN pacman -Sy --noconfirm
-
-RUN pacman -S --noconfirm lib32-libxtst libsm libxrender python git nano youtube-dl ffmpeg wget &&\
+# Installing drivers
+RUN if ["$env" = "opencl"]; then\
+        # mesa = ATI / AMD Mesa 
+        if [ "$graphics" = "mesa" ] || [ "$graphics" = "nvidia" ] || [ "$graphics" = "nvidia-390xx" ]; then\
+            pacman -S --noconfirm libclc ocl-icd opencl-mesa;\
+        elif [ "$graphics" = "ivybridge" ] || [ "$graphics" = "haswell" ]; then\
+            pacman -S --noconfirm libclcocl-icd beignet;\
+        else pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
+        fi\
+    elif ["$env" = "cuda"]; then\
+        pacman -S --noconfirm cuda cudann;\
+    fi
+# Copying DeepFaceLab_Linux
+COPY . /app/DeepFaceLab_Linux
+# Installing the work environment for DeepFaceLab_Linux
+WORKDIR /app/DeepFaceLab_Linux
+RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano youtube-dl ffmpeg wget &&\
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
-    rm get-pip.py
-
-WORKDIR /app/DeepFaceLab_Linux
-# WIP If you run this comment the following COPY command.
-# git clone https://www.github.com/aspera-non-spernit/DeepFaceLab_Linux.git
-
-COPY . /app/DeepFaceLab_Linux
-RUN python -m pip install -r requirements-$requirements.txt &&\
+    python -m pip install -r requirements-$env.txt &&\
+# Removing temp files
+    rm get-pip.py &&\
     rm docker_from_cloned_repository.sh
-

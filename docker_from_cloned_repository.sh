@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Gathering installation information
 echo -e -n "Do you want to run on cuda, cpu or opencl [cuda, cpu, opencl]?:\n"
 read env
@@ -24,12 +25,13 @@ rm -rf $workspace
 mkdir -p $workspace
 mkdir $workspace/data_src
 mkdir $workspace/data_src/aligned
+mkdir $workspace/data_src/aligned_notrain
 mkdir $workspace/data_src/aligned_debug
 mkdir $workspace/data_dst
 mkdir $workspace/data_dst/aligned
+mkdir $workspace/data_src/aligned_notrain
 mkdir $workspace/data_dst/aligned_debug
 mkdir $workspace/model
-
 
 # Running or quitting installation
 echo -e -n "You can run and enter your Container with the command:\n"
