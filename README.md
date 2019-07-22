@@ -84,9 +84,25 @@ You never know if you need them again. If you do you save time for an additional
 
 ### Run
 
+You have two options:
+
+1. If you have used the default workspace: 
+
+```bash
+/home/${USER}/DeepFaceLab/workspace
+```
+
+you can use the run.sh script:
+
+```bash
+$ /home/${USER}/DeepFaceLab/run.sh
+```
+
+2. If you have changed the workspace directory you have to pass this info as -v argument
+
 ```bash
 // run the container
-$ docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
+$ docker run -ti -v {PATH_TO_YOUR_WORKSPRACE}:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
 ```
 
 ## 6) Execute Docker Container as executable command
