@@ -1,0 +1,10 @@
+The scripts of DeepFaceLab won't work in this setup.
+
+Instead, run:
+
+```bash
+$ python main.py ...
+```
+to run DeepFaceLab.
+
+I am working on providing scripts to facilitate the workflow.
