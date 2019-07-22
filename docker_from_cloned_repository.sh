@@ -33,8 +33,8 @@ mkdir $workspace/data_dst/aligned
 mkdir $workspace/data_dst/aligned_debug
 mkdir $workspace/data_dst/aligned_notrain
 mkdir $workspace/model
-cp ./scripts/clear_workspace.sh $workspace
-cp ./scripts/run.sh $workspace/..
+cp ./scripts/host/clear_workspace.sh $workspace
+cp ./scripts/host/run.sh $workspace/..
 
 # Running or quitting installation
 echo -e -n "\nYou can run and enter your Container with the command:\n"

@@ -6,5 +6,6 @@ scikit-image
 tqdm
 ffmpeg-python==0.1.17
 git+https://www.github.com/keras-team/keras-contrib.git
+tensorflow==1.13.1
 plaidml-keras==0.5.0
 plaidml==0.6.0

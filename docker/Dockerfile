@@ -14,9 +14,6 @@ RUN pacman -Sy --noconfirm
 RUN if [ "$env" = "opencl" ]; then\
         # mesa = ATI / AMD Mesa 
         if [ "$graphics" = "mesa" ] || [ "$graphics" = "nvidia" ] || [ "$graphics" = "nvidia-390xx" ]; then\
-        # BUG (twice) !!!
-        #/bin/sh: [opencl: command not found
-        #/bin/sh: [opencl: command not found
             pacman -S --noconfirm libclc ocl-icd opencl-$graphics;\
         elif [ "$graphics" = "ivybridge" ] || [ "$graphics" = "haswell" ]; then\
             pacman -S --noconfirm libclc ocl-icd beignet;\
