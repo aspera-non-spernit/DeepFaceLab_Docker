@@ -11,9 +11,9 @@ elif [[ "$env" = "opencl" ]]; then
 fi
 
 # Installing docker
-echo -e -n "Installing for a $env environment. Optional drivers: $graphics\n"
-docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$env --build-arg graphics=$graphics .
-echo -e -n "Docker container with DeepFaceLab successfully installed.\n"
+#echo -e -n "Installing for a $env environment. Optional drivers: $graphics\n"
+#docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$env --build-arg graphics=$graphics .
+#echo -e -n "Docker container with DeepFaceLab successfully installed.\n"
 
 # Setting up workspace
 echo -e -n "Where do you want to have the workspace directory [default: /home/${USER}/DeepFaceLab/workspace)]:\n"
@@ -26,23 +26,23 @@ rm -rf $workspace
 mkdir -p $workspace
 mkdir $workspace/data_src
 mkdir $workspace/data_src/aligned
-mkdir $workspace/data_src/aligned_notrain
 mkdir $workspace/data_src/aligned_debug
+mkdir $workspace/data_src/aligned_notrain
 mkdir $workspace/data_dst
 mkdir $workspace/data_dst/aligned
-mkdir $workspace/data_src/aligned_notrain
 mkdir $workspace/data_dst/aligned_debug
+mkdir $workspace/data_dst/aligned_notrain
 mkdir $workspace/model
+cp ./scripts/clear_workspace.sh $workspace
 
 # Running or quitting installation
-echo -e -n "You can run and enter your Container with the command:\n"
+echo -e -n "\nYou can run and enter your Container with the command:\n"
 echo -e -n "docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab\n"
-echo -e -n "You can copy your video material into the workspace folder on the host machine.\n"
+echo -e -n "\nYou can copy your video material into the workspace folder on the host machine.\n"
 echo -e -n "DeepFaceLab_Docker will pick up changes.\n"
-echo -n "Run DeepFaceLab_Docker now? [y, n]?"
+echo -e -n "\nRun DeepFaceLab_Docker now? [y, n]?"
 read execute
 if [ "$execute" = "y" ]; then
     docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
 fi
 echo -e -n "Installation successful. Have fun.\n"
-
