@@ -10,7 +10,7 @@ ARG graphics
 COPY docker/pacman.conf /etc/pacman.conf
 RUN pacman -Sy --noconfirm
 # Installing drivers
-RUN if ["$env" = "opencl"]; then\
+RUN if ["$env" = "opencl" ]; then\
         # mesa = ATI / AMD Mesa 
         if [ "$graphics" = "mesa" ] || [ "$graphics" = "nvidia" ] || [ "$graphics" = "nvidia-390xx" ]; then\
         # BUG (twice) !!!
@@ -21,7 +21,7 @@ RUN if ["$env" = "opencl"]; then\
             pacman -S --noconfirm libclc ocl-icd beignet;\
         else pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
         fi\
-    elif ["$env" = "cuda"]; then\
+    elif [ "$env" = "cuda" ]; then\
         pacman -S --noconfirm cuda cudann;\
     fi
 # Copying DeepFaceLab_Linux
