@@ -33,6 +33,8 @@ RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano 
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
     python -m pip install -r requirements-$env.txt &&\
-# Removing temp files
+# Removing installation files
     rm get-pip.py &&\
-    rm docker_from_cloned_repository.sh
+    rm docker_from_cloned_repository.sh&&\
+    rm -rf docker&&\
+    rm requirements*
