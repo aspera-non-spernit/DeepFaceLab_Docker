@@ -11,9 +11,9 @@ elif [[ "$env" = "opencl" ]]; then
 fi
 
 # Installing docker
-#echo -e -n "Installing for a $env environment. Optional drivers: $graphics\n"
-#docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$env --build-arg graphics=$graphics .
-#echo -e -n "Docker container with DeepFaceLab successfully installed.\n"
+echo -e -n "Installing for a $env environment. Optional drivers: $graphics\n"
+docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$env --build-arg graphics=$graphics .
+echo -e -n "Docker container with DeepFaceLab successfully installed.\n"
 
 # Setting up workspace
 echo -e -n "Where do you want to have the workspace directory [default: /home/${USER}/DeepFaceLab/workspace)]:\n"
