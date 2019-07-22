@@ -83,6 +83,7 @@ to render a video sequence without mapped faces. These images can be blurry or o
 You never know if you need them again. If you do you save time for an additional face extract.
 
 ### Run
+
 ```bash
 // run the container
 $ docker run -ti -v /home/${USER}/workspace:/app/DeepFaceLab_Linux/workspace aspera_non_spernit/deepfacelab
