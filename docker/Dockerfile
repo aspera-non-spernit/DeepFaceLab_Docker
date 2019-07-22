@@ -10,7 +10,8 @@ ARG graphics
 COPY docker/pacman.conf /etc/pacman.conf
 RUN pacman -Sy --noconfirm
 # Installing drivers
-RUN if ["$env" = "opencl" ]; then\
+
+RUN if [ "$env" = "opencl" ]; then\
         # mesa = ATI / AMD Mesa 
         if [ "$graphics" = "mesa" ] || [ "$graphics" = "nvidia" ] || [ "$graphics" = "nvidia-390xx" ]; then\
         # BUG (twice) !!!
