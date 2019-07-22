@@ -9,10 +9,6 @@ This fork uses a docker container to install DeeFaceLab_Linux instead of Anacond
 Currently, there's only one option available to install DeepFaceLab Linux.
 That is, you have cloned this repository before you start the installation. The provided ```docker/Dockerfile``` does not download this repository at the moment.
 
-The routine does not install cuda or opencl drivers at the moment. You can uncommebt the parts required in the
-```docker/Dockerfile```
-
-
 ## 1) Install and start/enable Docker
 
 **Note:** The user running the docker container must be member of the group "docker". This example is for
