@@ -21,7 +21,15 @@ if [ "$workspace" = "" ]; then
 fi
 echo -e -n "Creating folder structure: $workspace\n"
 rm -rf $workspace
-mkdir -p $workspace/{data_src/aligned, data_src/aligned_debug, data_dst/aligned, data_dst/aligned_debug, model}
+mkdir -p $workspace
+mkdir $workspace/data_src
+mkdir $workspace/data_src/aligned
+mkdir $workspace/data_src/aligned_debug
+mkdir $workspace/data_dst
+mkdir $workspace/data_dst/aligned
+mkdir $workspace/data_dst/aligned_debug
+mkdir $workspace/model
+
 
 # Running or quitting installation
 echo -e -n "You can run and enter your Container with the command:\n"
