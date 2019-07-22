@@ -19,7 +19,7 @@ if [ "$workspace" = "" ]; then
 fi
 echo -n "Creating folder structure in workspace.."
 rm -rf $workspace
-mkdir -r $workspace
+mkdir -p $workspace
 mkdir $workspace/data_src
 mkdir $workspace/data_src/aligned
 mkdir $workspace/data_src/aligned_debug
