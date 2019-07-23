@@ -22,8 +22,6 @@ if [ "$workspace" = "" ]; then
     workspace=/home/${USER}/DeepFaceLab/workspace
 fi
 echo -e -n "Creating folder structure: $workspace\n"
-
-./scripts/host/clear_workspace.sh
 rm -rf $workspace
 mkdir -p $workspace
 mkdir $workspace/data_src
