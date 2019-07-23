@@ -37,7 +37,7 @@ mkdir $workspace/data_dst/aligned_notrain
 mkdir $workspace/data_dst/seq
 mkdir $workspace/data_dst/vid
 mkdir $workspace/model
-cp ./scripts/host/clear_workspace.sh $workspace
+cp ./scripts/host/clear_workspace.sh $workspace/..
 cp ./scripts/host/run.sh $workspace/..
 
 # Running or quitting installation
