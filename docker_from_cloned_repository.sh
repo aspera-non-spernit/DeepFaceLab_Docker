@@ -28,10 +28,14 @@ mkdir $workspace/data_src
 mkdir $workspace/data_src/aligned
 mkdir $workspace/data_src/aligned_debug
 mkdir $workspace/data_src/aligned_notrain
+mkdir $workspace/data_src/seq
+mkdir $workspace/data_src/vid
 mkdir $workspace/data_dst
 mkdir $workspace/data_dst/aligned
 mkdir $workspace/data_dst/aligned_debug
 mkdir $workspace/data_dst/aligned_notrain
+mkdir $workspace/data_dst/seq
+mkdir $workspace/data_dst/vid
 mkdir $workspace/model
 cp ./scripts/host/clear_workspace.sh $workspace
 cp ./scripts/host/run.sh $workspace/..
