@@ -1,8 +1,6 @@
 #!/bin/bash
 WORKSPACE=/home/${USER}/DeepFaceLab/workspace
-rm -rf "$WORKSPACE/data_src"
-rm -rf "$WORKSPACE/data_dst"
-rm -rf "$WORKSPACE/model"
+rm -rf $WORKSPACE
 mkdir $WORKSPACE
 mkdir "$WORKSPACE/data_src"
 mkdir "$WORKSPACE/data_src/aligned"
