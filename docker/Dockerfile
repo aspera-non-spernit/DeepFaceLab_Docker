@@ -14,11 +14,12 @@ RUN pacman -Sy --noconfirm
 RUN if [ "$env" = "opencl" ]; then\
         # mesa = ATI / AMD Mesa 
         if [[ "$graphics" = "mesa" ]] || [[ "$graphics" = "nvidia" ]] || [[ "$graphics" = "nvidia-390xx" ]]; then\
-            pacman -S --noconfirm libclc ocl-icd opencl-$graphics;\
+            # TODO: no drivers installed
+            pacman -S --noconfirm base-devel libclc ocl-icd opencl-$graphics;\
         elif [[ "$graphics" = "ivybridge" ]] || [[ "$graphics" = "haswell" ]]; then\
-            pacman -S --noconfirm libclc ocl-icd beignet;\
+            pacman -S --noconfirm base-devel libclc ocl-icd beignet;\
         else\
-            pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
+            pacman -S --noconfirm base-devel libclc ocl-icd intel-compute-runtime;\
         fi\
     elif [[ "$env" = "cuda" ]]; then\
         pacman -S --noconfirm nvidia cuda cudnn;
@@ -36,7 +37,7 @@ RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo make cmake pytho
     python get-pip.py &&\
     python -m pip install -r requirements-$env.txt &&\
     # TODO only needed in cuda env
-    pip install dlib&&\
+    pip install dlib &&\
 
 # Removing installation files
     rm get-pip.py &&\
