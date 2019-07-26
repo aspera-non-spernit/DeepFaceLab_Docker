@@ -5,6 +5,7 @@ GRAPHICS=" "
 
 # If you run into trouble with CUDA not being available,
 # run nvidia-modprobe first.
+# You need to relogin in order for the cuda binaries to appear in your PATH
 
 # quit on false user input.
 early_quit() {
@@ -57,6 +58,7 @@ workspace() {
         workspace=/home/${USER}/DeepFaceLab/workspace
     fi
     echo -e -n "Creating folder structure: $workspace\n"
+    rm -rf $workspace
     mkdir -p $workspace
     mkdir $workspace/data_src
     mkdir $workspace/data_src/aligned

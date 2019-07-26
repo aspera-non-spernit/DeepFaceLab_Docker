@@ -39,10 +39,12 @@ RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano 
 # install optional replacements for parts of DeepFaceLab
 # currently only vid2img to convert a video into an image sequence
 # much faster than the python/ffmpeg implementation
+
+# ERROR: /bin/sh: -c: line 1: syntax error: unexpected end of file
 RUN if [ "$optional" = "y" ]; then\
-        curl https://sh.rustup.rs -sSf | sh &&\
-        git clone https://aspera-non-spernit/vid2img&&\
-        cd vid2img&&\
-        cargo build --release&&\
-        cp target/release/vid2img /usr/local/bin/\
+        curl https://sh.rustup.rs -sSf | sh; &&\
+        git clone https://aspera-non-spernit/vid2img; &&\
+        cd vid2img; &&\
+        cargo build --release; &&\
+        cp target/release/vid2img /usr/local/bin/;\
     fi
