@@ -91,7 +91,7 @@ run() {
     echo -e -n "Installation successful. Have fun.\n"
 }
 environment
-optional
+#optional
 install
 workspace
 run
