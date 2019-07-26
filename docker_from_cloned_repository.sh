@@ -1,5 +1,7 @@
 #!/bin/bash
-
+ENV="cuda"
+OPTIONAL="n"
+GRAPHICS=" "
 # quit on false user input.
 early_quit() {
     exit 1
@@ -8,15 +10,17 @@ early_quit() {
 
 # Gathering installation information
 # for the environment and graphics card.
-env() {
+environment() {
     echo -e -n "Do you want to run on cuda, cpu or opencl [cuda, cpu, opencl]?:\n"
     read env
+    ENV=$env
     if [[ "$env" != "cuda" ]] && [[ "$env" != "cpu" ]] && [[ "$env" != "opencl" ]]; then
         echo "$env is not a valid option. Choose from: 'cuda', 'cpu' or 'opencl'"
         early_quit
     elif [[ "$env" = "opencl" ]]; then
         echo -e -n "What's your graphics card [mesa, nvidia, nvidia-390xx, ivybridge, haswell]?:\n"
-        read graphics
+        read $graphics
+        GRAPHICS=graphics
         if [[ "$graphics" != "mesa" ]] && [[ "$graphics" != "nvidia" ]] && [[ "$graphics" != "nvidia-390xx" ]] && [[ "$graphics" != "ivybridge" ]] && [[ "$graphics" != "haswell" ]]; then
             echo "$env is not a valid option. Choose from: 'mesa', 'nvidia' 'nvidia-390xx', 'ivybridge' or 'haswell'"
             early_quit
@@ -27,6 +31,7 @@ env() {
 optional() {   
     echo -e -n "Do you want to install optional packages [y | n]?:\n"
     read optional
+    OPTIONAL=$optional
     if [[ "$optional" != "y" ]] && [[ "$optional" != "n" ]]; then
         echo "$env is not a valid option. Choose from: y, n"
         early_quit
@@ -36,13 +41,12 @@ optional() {
 # Installing docker
 install() {
     echo -e -n "Installing for a $env environment. Optional drivers: $graphics\n"
-    docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$env --build-arg graphics=$graphics --build-arg=$optional .
+    docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$ENV --build-arg graphics=$GRAPHICS --build-arg=$OPTIONAL .
     echo -e -n "Docker container with DeepFaceLab successfully installed.\n"
 }
 
 # Setting up workspace on the host
 workspace() {
-
     echo -e -n "Where do you want to have the workspace directory [default: /home/${USER}/DeepFaceLab/workspace)]:\n"
     read workspace
     if [ "$workspace" = "" ]; then
@@ -80,7 +84,7 @@ run() {
     fi
     echo -e -n "Installation successful. Have fun.\n"
 }
-env
+environment
 optional
 install
 workspace

@@ -20,7 +20,7 @@ RUN if [ "$env" = "opencl" ]; then\
         else pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
         fi\
     elif [ "$env" = "cuda" ]; then\
-        pacman -S --noconfirm cuda cudann;\
+        pacman -S --noconfirm cuda cudnn;\
     fi
 # Copying DeepFaceLab_Linux
 COPY . /app/DeepFaceLab_Linux
