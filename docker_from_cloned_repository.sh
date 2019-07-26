@@ -9,8 +9,8 @@ GRAPHICS=" "
 
 # quit on false user input.
 early_quit() {
-    exit 1
     echo "Closing with error. Nothing has been installed."
+    exit 1
 }
 
 # Gathering installation information

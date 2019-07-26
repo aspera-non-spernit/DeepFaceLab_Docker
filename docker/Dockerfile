@@ -21,7 +21,7 @@ RUN if [ "$env" = "opencl" ]; then\
             pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
         fi\
     elif [[ "$env" = "cuda" ]]; then\
-        pacman -S --noconfirm cuda cudnn;
+        pacman -S --noconfirm nvidia cuda cudnn;
     fi
 
 CMD export PATH=/opt/cuda/bin:$PATH
