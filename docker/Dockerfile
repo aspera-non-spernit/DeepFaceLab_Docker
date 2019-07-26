@@ -13,17 +13,22 @@ RUN pacman -Sy --noconfirm
 # Installing drivers
 RUN if [ "$env" = "opencl" ]; then\
         # mesa = ATI / AMD Mesa 
-        if [ "$graphics" = "mesa" ] || [ "$graphics" = "nvidia" ] || [ "$graphics" = "nvidia-390xx" ]; then\
+        if [[ "$graphics" = "mesa" ]] || [[ "$graphics" = "nvidia" ]] || [[ "$graphics" = "nvidia-390xx" ]]; then\
             pacman -S --noconfirm libclc ocl-icd opencl-$graphics;\
-        elif [ "$graphics" = "ivybridge" ] || [ "$graphics" = "haswell" ]; then\
+        elif [[ "$graphics" = "ivybridge" ]] || [[ "$graphics" = "haswell" ]]; then\
             pacman -S --noconfirm libclc ocl-icd beignet;\
-        else pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
+        else\
+            pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
         fi\
-    elif [ "$env" = "cuda" ]; then\
+    elif [[ "$env" = "cuda" ]]; then\
         pacman -S --noconfirm cuda cudnn;\
+    else\
+        echo "error"\
     fi
+
 # Copying DeepFaceLab_Linux
 COPY . /app/DeepFaceLab_Linux
+
 # Installing the work environment for DeepFaceLab_Linux
 WORKDIR /app/DeepFaceLab_Linux
 RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano youtube-dl ffmpeg wget &&\
@@ -35,16 +40,3 @@ RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano 
     rm docker_from_cloned_repository.sh&&\
     rm -rf docker&&\
     rm requirements*
-
-# install optional replacements for parts of DeepFaceLab
-# currently only vid2img to convert a video into an image sequence
-# much faster than the python/ffmpeg implementation
-
-# ERROR: /bin/sh: -c: line 1: syntax error: unexpected end of file
-RUN if [ "$optional" = "y" ]; then\
-        curl https://sh.rustup.rs -sSf | sh; &&\
-        git clone https://aspera-non-spernit/vid2img; &&\
-        cd vid2img; &&\
-        cargo build --release; &&\
-        cp target/release/vid2img /usr/local/bin/;\
-    fi
