@@ -32,7 +32,7 @@ COPY . /app/DeepFaceLab_Linux
 
 # Installing the work environment for DeepFaceLab_Linux
 WORKDIR /app/DeepFaceLab_Linux
-RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo make cmake python git nano youtube-dl ffmpeg wget which &&\
+RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano youtube-dl ffmpeg wget which &&\
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
     python -m pip install -r requirements-$env.txt &&\
