@@ -2,6 +2,10 @@
 ENV="cuda"
 OPTIONAL="n"
 GRAPHICS=" "
+
+# If you run into trouble with CUDA not being available,
+# run nvidia-modprobe first.
+
 # quit on false user input.
 early_quit() {
     exit 1
@@ -20,7 +24,7 @@ environment() {
     elif [[ "$env" = "opencl" ]]; then
         echo -e -n "What's your graphics card [mesa, nvidia, nvidia-390xx, ivybridge, haswell]?:\n"
         read $graphics
-        GRAPHICS=graphics
+        GRAPHICS=$graphics
         if [[ "$graphics" != "mesa" ]] && [[ "$graphics" != "nvidia" ]] && [[ "$graphics" != "nvidia-390xx" ]] && [[ "$graphics" != "ivybridge" ]] && [[ "$graphics" != "haswell" ]]; then
             echo "$env is not a valid option. Choose from: 'mesa', 'nvidia' 'nvidia-390xx', 'ivybridge' or 'haswell'"
             early_quit
