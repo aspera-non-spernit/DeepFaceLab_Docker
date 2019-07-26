@@ -21,20 +21,23 @@ RUN if [ "$env" = "opencl" ]; then\
             pacman -S --noconfirm libclc ocl-icd intel-compute-runtime;\
         fi\
     elif [[ "$env" = "cuda" ]]; then\
-        pacman -S --noconfirm cuda cudnn;\
-    else\
-        echo "error"\
+        pacman -S --noconfirm cuda cudnn;
     fi
 
+CMD export PATH=/opt/cuda/bin:$PATH
+CMD nvidia-modprobe
 # Copying DeepFaceLab_Linux
 COPY . /app/DeepFaceLab_Linux
 
 # Installing the work environment for DeepFaceLab_Linux
 WORKDIR /app/DeepFaceLab_Linux
-RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano youtube-dl ffmpeg wget &&\
+RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo make cmake python git nano youtube-dl ffmpeg wget which &&\
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &&\
     python get-pip.py &&\
     python -m pip install -r requirements-$env.txt &&\
+    # TODO only needed in cuda env
+    pip install dlib&&\
+
 # Removing installation files
     rm get-pip.py &&\
     rm docker_from_cloned_repository.sh&&\
