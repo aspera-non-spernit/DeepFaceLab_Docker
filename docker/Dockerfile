@@ -22,7 +22,7 @@ RUN if [ "$env" = "opencl" ]; then\
             pacman -S --noconfirm base-devel libclc ocl-icd intel-compute-runtime;\
         fi\
     elif [[ "$env" = "cuda" ]]; then\
-        pacman -S --noconfirm nvidia cuda cudnn;
+        pacman -S --noconfirm base-devel nvidia cuda cudnn;
     fi
 
 CMD export PATH=/opt/cuda/bin:$PATH
@@ -38,7 +38,6 @@ RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano 
     python -m pip install -r requirements-$env.txt &&\
     # TODO only needed in cuda env
     pip install dlib &&\
-
 # Removing installation files
     rm get-pip.py &&\
     rm docker_from_cloned_repository.sh&&\
