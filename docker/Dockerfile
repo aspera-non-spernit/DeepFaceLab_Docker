@@ -9,8 +9,8 @@ ARG graphics
 # Updating ArchLinux
 COPY docker/pacman.conf /etc/pacman.conf
 RUN pacman -Sy --noconfirm
-# Installing drivers
 
+# Installing drivers
 RUN if [ "$env" = "opencl" ]; then\
         # mesa = ATI / AMD Mesa 
         if [ "$graphics" = "mesa" ] || [ "$graphics" = "nvidia" ] || [ "$graphics" = "nvidia-390xx" ]; then\
@@ -35,3 +35,14 @@ RUN pacman -S --noconfirm lib32-libxtst libsm libxrender clinfo python git nano 
     rm docker_from_cloned_repository.sh&&\
     rm -rf docker&&\
     rm requirements*
+
+# install optional replacements for parts of DeepFaceLab
+# currently only vid2img to convert a video into an image sequence
+# much faster than the python/ffmpeg implementation
+RUN if [ "$optional" = "y" ]; then\
+        curl https://sh.rustup.rs -sSf | sh &&\
+        git clone https://aspera-non-spernit/vid2img&&\
+        cd vid2img&&\
+        cargo build --release&&\
+        cp target/release/vid2img /usr/local/bin/\
+    fi

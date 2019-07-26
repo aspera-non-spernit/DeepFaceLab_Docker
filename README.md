@@ -123,7 +123,7 @@ If you are on ArchLinux host in the cloud, you may have to initialize the keys b
 
 ```bash
 # pacman-key --init
-or # pacman-key --refresh-keys
+# pacman-key --refresh-keys
 # pacman -Syu
 ```
 
