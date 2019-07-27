@@ -7,32 +7,11 @@ GRAPHICS="GTX1080"
 # run nvidia-modprobe first.
 # You need to relogin in order for the cuda binaries to appear in your PATH
 # https://github.com/NVIDIA/nvidia-docker
-# scp arch@{}:/etc/ssh/sshd_conf ./docker/sshd_conf
 # quit on false user input.
 early_quit() {
     echo "Closing with error. Nothing has been installed."
     exit 1
 }
-
-# if on a blank arch installation execute arch_prep()
-arch_prep() {
-    sudo passwd
-    sudo pacman-keys --init
-    sudo pacman-key --populate archlinux
-    sudo cp docker/pacman.conf /etc/pacman.conf
-    
-    # sudo nano /etc/pacman.d/gnupg/gpg.conf
-    #>>keyserver hkp://pgp.mit.edu:11371
-
-    echo "127.0.0.1 localhost" >> /etc/hosts
-    
-    # todo: replace
-    echo 'DISPLAY="localhost:10.0"' >> etc/environment
-    sudo pacman -S linux-headers base-devel lib32-libxtst libsm libxrender python youtube-dl ffmpeg xorg-xinit xorg-xhost xorg-xauth xorg-xclock
-
-    sudo cp docker/sshd_conf /etc/ssh/sshd_conf
-}
-
 
 # Gathering installation information
 # for the environment and graphics card.
@@ -86,14 +65,14 @@ optional() {
 }
 
 # Installing docker
-install() {
+install() {    
     echo -e -n "Installing for a $env environment. "
     if [[ "$env" != "cpu" ]]; then
 		echo -e -n "Optional drivers: $graphics\n"
     else 
         echo -e -n "\n"
     fi
-  #  docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$ENV --build-arg graphics=$GRAPHICS --build-arg=$OPTIONAL .
+    docker build --tag=aspera_non_spernit/deepfacelab -f docker/Dockerfile --build-arg env=$ENV --build-arg graphics=$GRAPHICS --build-arg=$OPTIONAL .
     echo -e -n "Docker container with DeepFaceLab successfully installed.\n"
 }
 
@@ -142,7 +121,6 @@ run() {
     echo -e -n "Installation successful. Have fun.\n"
 }
 environment
-#arch_prep
 #optional
 install
 finish_installation
