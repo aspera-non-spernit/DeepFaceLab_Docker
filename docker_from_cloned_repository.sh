@@ -43,12 +43,12 @@ environment() {
         if [[ "$graphics" = "V100" ]]; then
             wget "http://us.download.nvidia.com/tesla/418.67/NVIDIA-Linux-x86_64-418.67.run";
             chmod 700 ./NVIDIA-Linux-x86_64-418.67.run;
-            ./NVIDIA-Linux-x86_64-418.67.run;
+            sudo ./NVIDIA-Linux-x86_64-418.67.run;
             rm ./NVIDIA-Linux-x86_64-418.67.run;
         elif [[ "$graphics" = "GTX1080" ]]; then
             wget "http://us.download.nvidia.com/XFree86/Linux-x86_64/430.34/NVIDIA-Linux-x86_64-430.34.run";
             chmod 700 ./NVIDIA-Linux-x86_64-430.34.run;
-            ./NVIDIA-Linux-x86_64-430.34.run;
+            sudo ./NVIDIA-Linux-x86_64-430.34.run;
             rm ./NVIDIA-Linux-x86_64-430.34.run;
         fi
     fi
