@@ -41,15 +41,17 @@ environment() {
 		fi
 		GRAPHICS=$graphics
         if [[ "$graphics" = "V100" ]]; then
-            wget "http://us.download.nvidia.com/tesla/418.67/NVIDIA-Linux-x86_64-418.67.run";
+            if [ ! -f ./NVIDIA-Linux-x86_64-418.67.run ]]; then
+                wget "http://us.download.nvidia.com/tesla/418.67/NVIDIA-Linux-x86_64-418.67.run";
+            fi
             chmod 700 ./NVIDIA-Linux-x86_64-418.67.run;
             sudo ./NVIDIA-Linux-x86_64-418.67.run;
-            rm ./NVIDIA-Linux-x86_64-418.67.run;
         elif [[ "$graphics" = "GTX1080" ]]; then
-            wget "http://us.download.nvidia.com/XFree86/Linux-x86_64/430.34/NVIDIA-Linux-x86_64-430.34.run";
+            if [ ! -f ./NVIDIA-Linux-x86_64-430.34.run ]]; then
+                wget "http://us.download.nvidia.com/tesla/418.67/NVIDIA-Linux-x86_64-418.67.run";
+            fi        
             chmod 700 ./NVIDIA-Linux-x86_64-430.34.run;
             sudo ./NVIDIA-Linux-x86_64-430.34.run;
-            rm ./NVIDIA-Linux-x86_64-430.34.run;
         fi
     fi
 }
@@ -104,6 +106,7 @@ workspace() {
 }
 
 finish_installation() {
+    rm ./NVIDIA-Linux-x86_64*.run;
     exec bash
 }
 
